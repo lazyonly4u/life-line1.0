@@ -1,0 +1,262 @@
+/* ============================================
+   THEME TOKENS
+   One set of variables per season, overridden by [data-season].
+   [data-mode="dark"] flips text/background regardless of season.
+   This replaces having 4 fully-duplicated seasonal HTML blocks —
+   the markup never changes, only these variables do.
+   ============================================ */
+
+:root {
+  --font-heading: "Georgia", serif;
+  --font-body: system-ui, sans-serif;
+
+  --radius: 12px;
+  --gap: 1.5rem;
+
+  /* fallback palette, overridden below */
+  --accent: #7a9e7e;
+  --bg: #fdfaf4;
+  --surface: #ffffff;
+  --text: #2b2b2b;
+  --text-muted: #6b6b6b;
+}
+
+/* ---- Seasons (light mode base) ---- */
+[data-season="winter"] {
+  --accent: #246791;
+  --bg: #81a3be;
+  --surface: #ffffff;
+  --text: #1f2d36;
+  --text-muted: #092635;
+}
+
+[data-season="spring"] {
+  --accent: #42751b;
+  --bg: #adc580;
+  --surface: #ffffff;
+  --text: #253321;
+  --text-muted: #284619;
+}
+
+[data-season="summer"] {
+  --accent: #cc9621;
+  --bg: #ffdb9e;
+  --surface: #ffffff;
+  --text: #3a2204;
+  --text-muted: #4e2a02;
+}
+
+[data-season="autumn"] {
+  --accent: #883d1f;
+  --bg: #c58d73;
+  --surface: #ffffff;
+  --text: #361607;
+  --text-muted: #3a1908;
+}
+
+/* ---- Dark mode: same seasonal accent, dark surfaces ---- */
+[data-mode="dark"] {
+  --bg: #14181b;
+  --surface: #1e2428;
+  --text: #eceff1;
+  --text-muted: #9aa5ab;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+button, select {
+  font: inherit;
+}
+
+/* ============================================
+   PAGE GRID
+   header / content / footer as named grid areas.
+   Replaces stacks of absolutely-positioned divs.
+   ============================================ */
+ 
+.page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+}
+ 
+.site-header {
+  grid-area: header;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--gap);
+  padding: 1rem 2rem;
+  background: var(--surface);
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+}
+ 
+.logo {
+  font-family: var(--font-heading);
+  color: var(--accent);
+  margin: 0;
+  font-size: 1.5rem;
+}
+ 
+.main-nav {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 0.5rem;
+  justify-content: start;
+}
+ 
+.nav-link {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+ 
+.nav-link:hover,
+.nav-link:focus-visible {
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  color: var(--text);
+}
+ 
+.nav-link.active {
+  background: var(--accent);
+  color: white;
+}
+ 
+.theme-controls {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 1rem;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+ 
+#mode-toggle {
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--text);
+  border-radius: var(--radius);
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+}
+ 
+.content {
+  grid-area: main;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+ 
+.site-footer {
+  grid-area: footer;
+  padding: 1rem 2rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  background: var(--surface);
+  border-top: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+}
+ 
+/* ============================================
+   SECTION LAYOUT (inside each loaded partial)
+   Cards use Grid instead of nested divs with margins.
+   ============================================ */
+ 
+.section-grid {
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+ 
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+}
+ 
+.card h2 {
+  color: var(--accent);
+  margin-top: 0;
+}
+ 
+.card h3 {
+  color: var(--accent);
+  margin-top: 0;
+}
+ 
+.card h4 {
+  color: var(--text);
+  margin: 1rem 0 0.4rem;
+  font-size: 0.95rem;
+}
+ 
+.card ul {
+  margin: 0.25rem 0 0.75rem;
+  padding-left: 1.2rem;
+  color: var(--text-muted);
+}
+ 
+.card ul li {
+  margin-bottom: 0.35rem;
+}
+ 
+/* A card that spans the full row instead of one grid cell —
+   used for content-heavy sections like Guidance. */
+.card-wide {
+  grid-column: 1 / -1;
+}
+ 
+/* Quoted gentle-reminder / encouragement lines */
+.quote-list {
+  list-style: none;
+  padding-left: 0;
+}
+ 
+.quote-list li {
+  font-style: italic;
+  padding: 0.4rem 0.75rem;
+  border-left: 3px solid var(--accent);
+  margin-bottom: 0.5rem;
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+ 
+/* Crisis / emergency callout */
+.lifeline-card {
+  border: 1px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+}
+ 
+.lifeline-card .emergency {
+  font-weight: 600;
+  padding: 0.75rem;
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+}
+ 
+@media (max-width: 640px) {
+  .site-header {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+}
+ 

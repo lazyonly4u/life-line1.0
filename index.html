@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" data-season="winter" data-mode="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Life-Line</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="page">
+
+    <header class="site-header">
+      <h1 class="logo">Life-Line</h1>
+
+      <nav class="main-nav">
+        <button class="nav-link" data-section="menu">Menu</button>
+        <button class="nav-link" data-section="depression">Depression</button>
+        <button class="nav-link" data-section="anxiety">Anxiety</button>
+        <button class="nav-link" data-section="ptsd">PTSD</button>
+        <button class="nav-link" data-section="ed">Eating Disorders</button>
+        <button class="nav-link" data-section="adhd">ADHD</button>
+      </nav>
+
+      <div class="theme-controls">
+        <label>
+          Season:
+          <select id="season-select">
+            <option value="winter">Winter</option>
+            <option value="spring">Spring</option>
+            <option value="summer">Summer</option>
+            <option value="autumn">Autumn</option>
+          </select>
+        </label>
+        <button id="mode-toggle" aria-pressed="false">🌙 Dark mode</button>
+      </div>
+    </header>
+
+    <main id="content" class="content" aria-live="polite">
+      <!-- Section HTML gets injected here by js/main.js -->
+    </main>
+
+    <footer class="site-footer">
+      <p>If you're in crisis, you don't have to wait for this page to load. Reach out now.</p>
+    </footer>
+
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
