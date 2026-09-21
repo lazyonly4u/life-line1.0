@@ -1,9 +1,7 @@
 /* ============================================
-   THEME TOKENS
+   THEME
    One set of variables per season, overridden by [data-season].
    [data-mode="dark"] flips text/background regardless of season.
-   This replaces having 4 fully-duplicated seasonal HTML blocks —
-   the markup never changes, only these variables do.
    ============================================ */
 
 :root {
@@ -79,9 +77,8 @@ button, select {
 }
 
 /* ============================================
-   PAGE GRID
+   GRID
    header / content / footer as named grid areas.
-   Replaces stacks of absolutely-positioned divs.
    ============================================ */
  
 .page {
@@ -176,7 +173,7 @@ button, select {
 }
  
 /* ============================================
-   SECTION LAYOUT (inside each loaded partial)
+   LAYOUT
    Cards use Grid instead of nested divs with margins.
    ============================================ */
  
@@ -184,6 +181,23 @@ button, select {
   display: grid;
   gap: var(--gap);
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.menu-link {
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.quizlink {
+  background: var(--surface);
+  background: var(--accent);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+  margin-bottom: 1.5rem;
 }
  
 .card {
@@ -260,3 +274,78 @@ button, select {
   }
 }
  
+/* ===========================
+   COUNT UP TIMER
+=========================== */
+
+.timer-card {
+    display: grid;
+    gap: 1.5rem;
+      margin-bottom: 1.5rem;
+}
+
+.timer-card h2 {
+    margin: 0;
+    text-align: center;
+    color: var(--accent);
+}
+
+.timer-display {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px,1fr));
+    gap: 1rem;
+}
+
+.time-box {
+    background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+    border-radius: var(--radius);
+    padding: 1rem;
+    text-align: center;
+}
+
+.time-box span {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+.time-box small {
+    color: var(--text-muted);
+}
+
+.progress-container {
+    width: 100%;
+    height: 18px;
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: var(--accent);
+    transition: width .3s linear;
+}
+
+.timer-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.timer-buttons button {
+    padding: .7rem 1.4rem;
+    border-radius: var(--radius);
+    border: none;
+    cursor: pointer;
+    background: var(--accent);
+    color: white;
+    font-weight: 600;
+}
+
+.timer-buttons button:hover {
+    opacity: .9;
+}
